@@ -6,8 +6,8 @@ All API endpoint are under `/api/` and require a query parameter of `key` contai
 
 ###endpoints
 
-####¯\\_(ツ)_/¯
-¯\\_(ツ)_/¯ something by foursquare ID.
+####¯\\\_(ツ)\_/¯
+¯\\\_(ツ)\_/¯ something by foursquare ID.
 
 *example call:*
 ```
