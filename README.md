@@ -1,7 +1,7 @@
-#¯\_(ツ)_/¯ -server
+#¯\\\_(ツ)\_/¯ -server
 
 ###about
-you can ¯\_(ツ)_/¯ on the internet with it.
+you can ¯\\\_(ツ)\_/¯ on the internet with it.
 All API endpoint are under `/api/` and require a query parameter of `key` containing a top-secret only-donald-trump-and-donald-duck-know-about-it classified api key.
 
 ###endpoints
