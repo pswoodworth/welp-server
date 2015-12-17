@@ -13,10 +13,10 @@ exports = module.exports = function(req, res) {
     // TODO: make this more efficient
     async.each(venues, function(venue, done){
       Welp.model.findOne({foursquareId: venue.foursquareId}, 'welpCount').exec(function(err,result){
-        console.log(result);
-        console.log(venue.foursquareId);
         if(result){
           venue.welpCount = result.welpCount;
+        }else{
+          venue.welpCount = 0;
         }
         done();
       });
