@@ -9,7 +9,7 @@ All API endpoints are under `/api/` and require a query parameter of `key` conta
 ####¯\\\_(ツ)\_/¯
 ¯\\\_(ツ)\_/¯ something by foursquare ID.
 
-*example call:*
+#####example call:
 ```
 POST /api/welp/4b5379aef964a520dc9e27e3?key=[KEY]
 ```
@@ -24,11 +24,11 @@ lat           | the latitude  | 42.020202     | yes           | n/a           |
 lng           | the longitude | -71.222928    | yes           | n/a           |
 limit         | # of venues   | 3             | no            | 1             |
 
-*example call:*
+#####example call:
 ```
 GET /api/nearby?key=[KEY]&lat=42.3653402&lng=-71.106651&limit=3
 ```
-*result:*
+#####response:
 ```json
 [
     {
@@ -64,8 +64,5 @@ GET /api/nearby?key=[KEY]&lat=42.3653402&lng=-71.106651&limit=3
 ]
 ```
 
-####TODO: recommendations 
+####TODO: recommendations
 recommendations based both on welps 'awarded' nearby and some to-be-cooked-up analysis of foursquare.
-
-
-
