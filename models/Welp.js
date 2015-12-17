@@ -27,5 +27,5 @@ Welp.schema.add({
 
 
 
-Welp.defaultColumns = 'name, foursquareId, count';
+Welp.defaultColumns = 'name, foursquareId, welpCount';
 Welp.register();
