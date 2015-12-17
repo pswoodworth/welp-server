@@ -18,7 +18,7 @@ Welp.add({
 		required: true,
 		initial: true
 	},
-	count: { type: Number, index: true}
+	welpCount: { type: Number, index: true}
 });
 
 Welp.schema.add({

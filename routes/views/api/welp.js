@@ -23,6 +23,7 @@ exports = module.exports = function(req, res) {
         }else{
           if (result){
             model = result;
+						model.welpCount++;
             next();
           }else{
             foursquare.getDetails(id, function(err, details){
@@ -32,7 +33,7 @@ exports = module.exports = function(req, res) {
               }else{
                 model = new Welp.model({
                   foursquareId: id,
-                  count: 0,
+                  welpCount: 1,
                   name: details.name,
                   geometry: {
                     coordinates: details.coordinates
@@ -53,7 +54,8 @@ exports = module.exports = function(req, res) {
           if(!err){
             res.status(200).send("¯\\_(ツ)_/¯ somehow it worked");
           }else{
-            res.status(500).send("¯\\_(ツ)_/¯ something went wrong with the database");
+						console.error(err);
+            res.status(500).send("¯\\_(ツ)_/¯ something went wrong saving to the database");
           }
         });
       }
