@@ -22,7 +22,16 @@ Welp.add({
 });
 
 Welp.schema.add({
-	geometry: { type: { type: String, default:'Point' }, coordinates: [Number] }
+	geometry: {
+		type: { type: String, default:'Point' },
+		coordinates: [Number],
+	}
+});
+
+Welp.schema.index({ geometry: '2dsphere' });
+
+Welp.schema.virtual('location', function() {
+	return this.geometry.coordinates;
 });
 
 

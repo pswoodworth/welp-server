@@ -39,6 +39,7 @@ exports = module.exports = function(app) {
 
 	app.post('/api/welp/:foursquareId', middleware.ensureAPIKey, routes.views.api.welp);
 	app.get('/api/nearby', middleware.ensureAPIKey, routes.views.api.nearby);
+	app.get('/api/recommend', middleware.ensureAPIKey, routes.views.api.recommend);
 
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
