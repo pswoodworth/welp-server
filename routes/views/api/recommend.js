@@ -16,7 +16,7 @@ exports = module.exports = function(req, res) {
         $maxDistance: 1000
       },
     }
-  }, 'name foursquareId geometry welpCount').limit(limit).lean().exec(function(err, result){
+  }, 'name foursquareId welpCount location').limit(limit).exec(function(err, result){
     if (err){
       console.error(err);
       res.status(500).send('¯\\_(ツ)_/¯ something went wrong for like no reason');

@@ -30,8 +30,13 @@ Welp.schema.add({
 
 Welp.schema.index({ geometry: '2dsphere' });
 
-Welp.schema.virtual('location', function() {
-	return this.geometry.coordinates;
+Welp.schema.set('toJSON', { getters: true, virtuals: false });
+Welp.schema.set('toObject', { getters: true, virtuals: false });
+
+Welp.schema.virtual('location').get(function () {
+  return this.geometry.coordinates;
+}).set(function (locationInput) {
+  this.set('geometry.coordinates', locationInput);
 });
 
 
