@@ -7,7 +7,7 @@ exports = module.exports = function(req, res) {
 
   var query = req.query;
 
-  var limit = query.limit || 1;
+  var limit = query.limit ? parseInt(query.limit) : 1;
 
   foursquare.getNearby(query.lat, query.lng, limit, function(err, venues){
     // TODO: make this more efficient

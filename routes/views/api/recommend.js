@@ -2,7 +2,6 @@ var keystone = require('keystone');
 var foursquare = require('../../../utils/foursquare');
 var geo = require('../../../utils/geo');
 var Welp = keystone.list('Welp');
-var async = require('async');
 var _ = require('underscore');
 
 exports = module.exports = function(req, res) {
@@ -11,19 +10,21 @@ exports = module.exports = function(req, res) {
   var queryLat = parseFloat(query.lat);
   var queryLng = parseFloat(query.lng);
 
-  var limit = query.limit || 10;
+  var limit = query.limit ? parseInt(query.limit) : 10;
   var maxDistance = geo.feetToMeters(query.maxDistance) || geo.feetToMeters(1000);
   var minDistance = geo.feetToMeters(query.minDistance) || 0;
+
 
   Welp.model.aggregate([
   {
     $geoNear: {
-      near: {type: "Point", coordinates: [queryLng, queryLat]},
+      near: {type: 'Point', coordinates: [queryLng, queryLat]},
       spherical: true,
       distanceField: 'distance',
       distanceMultiplier : 3.28084, //meters to feet
       maxDistance: maxDistance,
-      minDistance: minDistance
+      minDistance: minDistance,
+      num: limit
     }
   }], function(err, result) {
     if (err){
