@@ -32,9 +32,11 @@ exports = module.exports = function(req, res) {
     }else{
       // TODO: paginate this query advice: https://emptysqua.re/blog/paging-geo-mongodb/
       // TODO: augment with results from foursquare, figure out how that works
+
       var response = _.map(result, function(venue){
+        venue.location = geo.pointToLocation(venue.geometry);
+        venue.distance = Math.round(venue.distance);
         var venueObject = _.pick(venue, 'name', 'foursquareId', 'welpCount', 'location', 'distance');
-        // var location = venueObject.location;
         return venueObject;
       });
       res.json(response);
