@@ -12,19 +12,20 @@ exports = module.exports = function(req, res) {
   var queryLng = parseFloat(query.lng);
 
   var limit = query.limit || 10;
-  var maxDistance = parseFloat(query.maxDistance) || geo.feetToMeters(1000);
+  var maxDistance = geo.feetToMeters(query.maxDistance) || geo.feetToMeters(1000);
   var minDistance = geo.feetToMeters(query.minDistance) || 0;
 
-  Welp.model.find({
-    geometry: {
-      $geoNear: {
-        $geometry: {type: "Point", coordinates: [queryLng, queryLat]},
-        $maxDistance: maxDistance,
-        $minDistance: minDistance,
-        $spherical: false
-      },
+  Welp.model.aggregate([
+  {
+    $geoNear: {
+      near: {type: "Point", coordinates: [queryLng, queryLat]},
+      spherical: true,
+      distanceField: 'distance',
+      distanceMultiplier : 3.28084, //meters to feet
+      maxDistance: maxDistance,
+      minDistance: minDistance
     }
-  }, 'name foursquareId welpCount geometry').limit(limit).exec(function(err, result){
+  }], function(err, result) {
     if (err){
       console.error(err);
       res.status(500).send('¯\\_(ツ)_/¯ something went wrong for like no reason');
@@ -32,15 +33,15 @@ exports = module.exports = function(req, res) {
       // TODO: paginate this query advice: https://emptysqua.re/blog/paging-geo-mongodb/
       // TODO: augment with results from foursquare, figure out how that works
       var response = _.map(result, function(venue){
-        var venueObject = _.pick(venue.toObject(), 'name', 'foursquareId', 'welpCount', 'location');
-        var location = venueObject.location;
-        venueObject.distance = geo.getDistance(queryLat, queryLng, location[0], location[1]);
+        var venueObject = _.pick(venue, 'name', 'foursquareId', 'welpCount', 'location', 'distance');
+        // var location = venueObject.location;
         return venueObject;
       });
       res.json(response);
-
     }
   });
+
+
 
 
 };

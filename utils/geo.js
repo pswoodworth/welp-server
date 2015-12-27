@@ -1,5 +1,3 @@
-var geoLib = require('geoLib');
-var geoDistance = require('geo-distance-js');
 
 module.exports ={
   getDistance: function (lat1, lng1, lat2, lng2) {
