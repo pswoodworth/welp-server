@@ -31,13 +31,12 @@ exports = module.exports = function(req, res) {
                 errorMessage = "¯\\_(ツ)_/¯ went wrong talking to foursquare";
                 next(err);
               }else{
+								// switch coordinates for GeoJSON point
                 model = new Welp.model({
                   foursquareId: id,
                   welpCount: 1,
                   name: details.name,
-                  geometry: {
-                    coordinates: details.coordinates
-                  }
+									location: details.coordinates
                 });
                 next();
               }
