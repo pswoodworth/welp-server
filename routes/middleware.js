@@ -36,7 +36,7 @@ exports.initLocals = function(req, res, next) {
 exports.ensureAPIKey = function(req, res, next) {
 
 	var apiKey = process.env.API_KEY;
-	if (req.query.key !== apiKey){
+	if (req.query.key !== apiKey && req.body.key !== apiKey){
 		res.status(401).send('¯\\_(ツ)_/¯ not today');
 	}else{
 		next();
