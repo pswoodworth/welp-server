@@ -41,26 +41,7 @@ GET /api/nearby?key=[KEY]&lat=42.3653402&lng=-71.106651&limit=3
         "distance": 216,
         "welpCount": 5
     },
-    {
-        "foursquareId": "4b5379aef964a520dc9e27e3",
-        "name": "James Cronin Park",
-        "location": [
-            42.3652367739202,
-            -71.10660284757614
-        ],
-        "distance": 12,
-        "welpCount": 0
-    },
-    {
-        "foursquareId": "4dd0c0f781dc3dc265f0fb55",
-        "name": "p²",
-        "location": [
-            42.365288,
-            -71.106677
-        ],
-        "distance": 6,
-        "welpCount": 0
-    }
+    ...
 ]
 ```
 
@@ -94,6 +75,7 @@ GET /api/recommend?key=[KEY]&lat=42.3653402&lng=-71.106651&limit=15&minDistance=
             -71.10354244709015
         ],
         "distance": 860
-    }
+    },
+    ...
 ]
 ```
